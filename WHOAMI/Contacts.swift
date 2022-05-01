@@ -4,7 +4,8 @@
 //
 //  Created by hurdasol on 2022/05/01.
 //
-
+//두 번째 탭 뷰로 연락처의 정보를 받아서 List형식으로 보여준다.
+//contacts를 불러오는 방법을 익히고 구현하기
 import SwiftUI
 
 struct Contacts: View {

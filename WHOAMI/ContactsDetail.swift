@@ -4,7 +4,7 @@
 //
 //  Created by hurdasol on 2022/05/01.
 //
-
+//두 번재 탭 뷰의 서브뷰,각 사람에게 코멘트를 남길 수 있다.
 import SwiftUI
 
 struct ContactsDetail: View {

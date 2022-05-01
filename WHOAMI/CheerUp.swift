@@ -6,7 +6,6 @@
 //
 // 세 번째 탭 뷰로 동기부여가 되는 명언과 사진들이 그리드 형식으로 나열되어 있다.
 import SwiftUI
-//데이터를 묶어서 @state @binding사용해보기
 
 struct CheerUp: View {
     var columns : [GridItem] = [GridItem(.adaptive(minimum: 100))]
@@ -31,7 +30,7 @@ struct CheerUp: View {
                         }
                     }
                 }
-            }.navigationTitle(Text("Smile"))
+            }.navigationTitle(Text("CheerUp!"))
         }
     }
 }

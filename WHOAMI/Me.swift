@@ -4,7 +4,7 @@
 //
 //  Created by hurdasol on 2022/05/01.
 //
-
+//첫 번째 탭 뷰로 메인화면, 자신의 상태와 코멘트들을 볼 수 있다.
 import SwiftUI
 
 //관측가능한 객체 Person클래스
@@ -38,9 +38,9 @@ var ocean: Person = Person(name: "오션",nickName:"개구리신사", age: 25, i
  "열심히 하는 모습이 멋져"])
 
 var juny: Person = Person(name: "주니",nickName: "곰돌이",age: 23,imageURL: "nuguri", feature: "디자인", job:"제빵사", coments:
-                            ["코멘트가 들어갈꺼임",
-                             "onDelete와 onMove기능 넣어야함",
-                             "editButton으로 구현할지도..."])
+                            ["디자인을 잘 뽑으세요!",
+                             "감각적인 사람",
+                             "느려서 답답해"])
 var yung: Person = Person(name: "융식",nickName: "나무늘보",age: 23,imageURL: "iphone", feature: "개발자", job:"직장인", coments:
                             ["데이터를 관리하는 모습이 멋져",
                              "깃허브는 어떻게 쓰는건가요?",
