@@ -9,29 +9,35 @@
 import SwiftUI
 
 struct CheerUpDetail: View {
+    var imageName:String
+    var imageText:String
     var body: some View {
         NavigationView{
             VStack{
-            Image("perpect")
-                .resizable()
-                .scaledToFit()
-                .frame(alignment: .bottom)
-                .navigationTitle(Text("뭐든 할 수 있다."))
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(alignment: .center)
                 Spacer()
-                //버튼 구현 - 이미지를 TabView형식으로 구현하고 하나씩 넘어가는 걸로 만들기
+                //버튼 구현 - 이미지를 (TabView형식)으로 구현하고 하나씩 넘어가는 걸로 만들기?// 배열에서 Index 사용법
                 HStack{
-                Button(action: {}){
-                    Text("< 이전 사진")
-                        .padding(.leading)
+                    Button(action: {
+                        
+                    }){
+                        Text("< 이전 사진")
+                            .padding(.leading)
+                    }
+                    Spacer()
+                    Button(action: {
+                        
+                    }){
+                        Text("다음 사진 >")
+                            .padding(.trailing)
+                    }
+
                 }
-                Spacer()
-                    Button(action: {}){
-                    Text("다음 사진 >")
-                        .padding(.trailing)
-                }
-                   
-            }
-            }
+            }.navigationTitle(Text("\(imageText)"))
+                
         }
         
     }
@@ -39,6 +45,6 @@ struct CheerUpDetail: View {
 
 struct CheerUpDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CheerUpDetail()
+        CheerUpDetail(imageName: "perpect", imageText: "설명란입니다")
     }
 }

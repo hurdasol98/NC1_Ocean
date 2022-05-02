@@ -30,7 +30,8 @@ class Person: ObservableObject, Identifiable{
         self.id = nickName
     }
 }
-//ocean과 juny :Person 객체들 생성
+
+//Person 객체들 생성
 var ocean: Person = Person(name: "오션",nickName:"개구리신사", age: 25, imageURL: "gentlefrog", feature: "도메인", job:"대학생",coments:
 ["사람들을 좋아하는게 보여",
  "보면 볼수록 매력적이야",
