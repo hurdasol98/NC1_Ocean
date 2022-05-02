@@ -24,8 +24,8 @@ struct WHOAMIApp: App {
                     .tabItem{
                         Image(systemName: "face.smiling")
                         Text("CheerUp")}
+                    
             }
-            
         }
     }
 }

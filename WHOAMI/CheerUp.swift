@@ -20,7 +20,6 @@ struct CheerUp: View {
             self.imageText = imageText
             self.id = imageName //id에 imageName부여함
         }
-        
     }
     //이미지 모음
     var imageSet : [ImageSet] = [
@@ -52,9 +51,12 @@ struct CheerUp: View {
                             }
                         }
                     }
+                    
                 }
             }.navigationTitle(Text("CheerUp!"))
+                
         }
+        
     }
 }
 

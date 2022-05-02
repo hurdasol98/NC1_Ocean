@@ -29,7 +29,7 @@ struct ContactsDetail: View {
             }.padding(.top)
             .navigationTitle(Text("사람들!"))
             .listStyle(.inset)
-            
+            //코멘트 남기기 - (text를 치지 않으면 엔터 불가로 만들기)
             HStack{
                 TextField("'\(person.nickName)'에게 코멘트를 남겨주세요!",text: $newComent, onCommit: {
                     person.coments.append(newComent)

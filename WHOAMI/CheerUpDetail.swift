@@ -12,14 +12,14 @@ struct CheerUpDetail: View {
     var imageName:String
     var imageText:String
     var body: some View {
-        NavigationView{
+        
             VStack{
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(alignment: .center)
                 Spacer()
-                //버튼 구현 - 이미지를 (TabView형식)으로 구현하고 하나씩 넘어가는 걸로 만들기?// 배열에서 Index 사용법
+                //버튼 구현 - 이미지를 (TabView형식)으로 구현하고 하나씩 넘어가는 걸로 만들기 기능만 구현해보고 버튼은 없애버리기
                 HStack{
                     Button(action: {
                         
@@ -36,15 +36,21 @@ struct CheerUpDetail: View {
                     }
 
                 }
-            }.navigationTitle(Text("\(imageText)"))
+                    
+            }
+            .navigationTitle(imageText)
                 
-        }
+                
+                
+                
+                
+        
         
     }
 }
 
 struct CheerUpDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CheerUpDetail(imageName: "perpect", imageText: "설명란입니다")
+        CheerUpDetail(imageName: "perpect", imageText: "설명란")
     }
 }

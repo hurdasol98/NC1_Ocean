@@ -7,7 +7,7 @@
 //첫 번째 탭 뷰로 메인화면, 자신의 상태와 코멘트들을 볼 수 있다.
 import SwiftUI
 
-//관측가능한 객체 Person클래스
+//관측가능한 객체 Person클래스 //coments를 제외하곤 변경이 안됨 --> coments를 분리하여 이것만 바인딩하기
 class Person: ObservableObject, Identifiable{
     @Published var id :String = ""
     @Published var name: String = "이름"
@@ -95,20 +95,13 @@ struct Me: View {
             person.coments.remove(at:first)
         }
     }
-    //줄 바꾸기 기능
+    //줄 바꾸기 기능 //처음이거나 마지막으로 목록을 옮기면 오류가 생김 --> move로 해결
     func moveRow(from indexes:IndexSet, to destination: Int){
-        if let first = indexes.first{
-            person.coments.insert(person.coments.remove(at:first),at: destination)
-        }
-    }
+            person.coments.move(fromOffsets: indexes, toOffset: destination)
+}
 }
 
 struct Me_Previews: PreviewProvider {
-//    static var ocean = Person(name: "오션",nickName:"개구리신사", age: 25, imageURL: "gentlefrog", feature: "도메인", job:"대학생",coments:
-//                                                    ["사람들을 좋아하는게 보여",
-//                                                     "보면 볼수록 매력적이야",
-//                                                     "표현이 직설적이라서 상처야..",
-//                                                     "열심히 하는 모습이 멋져"])
     static var previews: some View {
         Me(person: ocean)
     }
