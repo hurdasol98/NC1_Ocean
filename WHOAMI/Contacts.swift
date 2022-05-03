@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Contacts: View {
     
-    @StateObject var person: Person
+    @ObservedObject var person: Person
     var body: some View {
         NavigationView{
             
