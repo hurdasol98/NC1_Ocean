@@ -27,7 +27,7 @@ struct CheerUpDetail: View {
                             .opacity(textSwitch ? 1 : 0.1)
                             .animation(.easeInOut(duration: 0.2))
                             .onAppear(perform: {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                                DispatchQueue.main.asyncAfter(deadline: .now()){
                                     if self.textSwitch == false{
                                         self.textSwitch.toggle()
                                     }
@@ -49,7 +49,8 @@ struct CheerUpDetail: View {
             }
             
         }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-        
+            .edgesIgnoringSafeArea(.all)
+            .background(Color(red: 80 / 255 , green: 70 / 255, blue: 126 / 255))
         
         
         

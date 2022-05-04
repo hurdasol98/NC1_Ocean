@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct ContactsDetail: View {
+    
+    
     @State private var newComent = ""
     @ObservedObject var person: Person
     var body: some View {
+        
         VStack{
+           
+            
             Image("\(person.imageURL)")
                 .resizable()
                 .frame(width:125, height: 125)//이미지
@@ -46,6 +51,7 @@ struct ContactsDetail: View {
         }
     }
 }
+
 
 struct ContactsDetail_Previews: PreviewProvider {
     static var previews: some View {

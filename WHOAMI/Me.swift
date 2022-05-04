@@ -7,7 +7,7 @@
 //첫 번째 탭 뷰로 메인화면, 자신의 상태와 코멘트들을 볼 수 있다.
 import SwiftUI
 
-//관측가능한 객체 Person클래스 //coments를 제외하곤 변경이 안됨 --> coments를 분리하여 이것만 바인딩하기
+//관측가능한 객체 Person클래스 //cvaoments를 제외하곤 변경이 안됨 --> coments를 분리하여 이것만 바인딩하기
 class Person: ObservableObject, Identifiable{
     @Published var id :String = ""
     @Published var name: String = "이름"
@@ -19,7 +19,7 @@ class Person: ObservableObject, Identifiable{
     @Published var department : String = "애플아카데미"
     @Published var coments: [String] = []
     //초기화
-    init(name: String,nickName: String,age: Int,imageURL : String,feature : String,job: String,coments: [String]){
+    init(_ name: String,_ nickName: String,_ age: Int,_ imageURL : String,_ feature : String,_ job: String,_ coments: [String]){
         self.name = name
         self.nickName = nickName
         self.age = age
@@ -32,18 +32,15 @@ class Person: ObservableObject, Identifiable{
 }
 
 //Person 객체들 생성
-var ocean: Person = Person(name: "오션",nickName:"개구리신사", age: 25, imageURL: "gentlefrog", feature: "도메인", job:"대학생",coments:
-["사람들을 좋아하는게 보여",
+var ocean: Person = Person("Ocean","개구리신사", 25, "gentlefrog", "도메인", "대학생",["사람들을 좋아하는게 보여",
  "보면 볼수록 매력적이야",
  "표현이 직설적이라서 상처야..",
  "열심히 하는 모습이 멋져"])
 
-var juny: Person = Person(name: "주니",nickName: "곰돌이",age: 23,imageURL: "nuguri", feature: "디자인", job:"제빵사", coments:
-                            ["디자인을 잘 뽑으세요!",
+var juny: Person = Person("주니","곰돌이",23,"nuguri", "디자인", "제빵사", ["디자인을 잘 뽑으세요!",
                              "감각적인 사람",
                              "느려서 답답해"])
-var yung: Person = Person(name: "융식",nickName: "나무늘보",age: 23,imageURL: "iphone", feature: "개발자", job:"직장인", coments:
-                            ["데이터를 관리하는 모습이 멋져",
+var yung: Person = Person("융식","나무늘보",23,"iphone", "개발자", "직장인", ["데이터를 관리하는 모습이 멋져",
                              "깃허브는 어떻게 쓰는건가요?",
                              "블로그 이웃해요?"])
 //Person들의 모음 people
