@@ -15,7 +15,9 @@ struct WHOAMIApp: App {
                 Me(person: ocean)
                     .tabItem{
                         Image(systemName: "person.circle")
-                        Text("Me")}
+                        Text("Me")
+                            
+                    }
                 Contacts(person: juny)
                     .tabItem{
                         Image(systemName: "person.3")
@@ -24,6 +26,7 @@ struct WHOAMIApp: App {
                     .tabItem{
                         Image(systemName: "face.smiling")
                         Text("CheerUp")}
+                    
                     
             }
         }

@@ -27,9 +27,10 @@ struct ContactsDetail: View {
             Text("\(person.feature + " | " + String(person.age) + " | " + person.job)")
             
             List{
-                ForEach(person.coments, id: \.self){coment in
-                    Text(coment)
+                ForEach(person.comments, id: \.self){comment in
+                    Text(comment)
                         .font(Font.system(size: 20))
+                        
                 }.listStyle(.inset)
             }.padding(.top)
             .navigationTitle(Text("사람들!"))
@@ -37,7 +38,7 @@ struct ContactsDetail: View {
             //코멘트 남기기 - (text를 치지 않으면 엔터 불가로 만들기)
             HStack{
                 TextField("'\(person.nickName)'에게 코멘트를 남겨주세요!",text: $newComent, onCommit: {
-                    person.coments.append(newComent)
+                    person.comments.append(newComent)
                     newComent = ""
                 }).disableAutocorrection(true)  //추천단어 끄기
                 Button(action:{
@@ -55,6 +56,6 @@ struct ContactsDetail: View {
 
 struct ContactsDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsDetail(person: juny)
+        ContactsDetail(person: ocean)
     }
 }

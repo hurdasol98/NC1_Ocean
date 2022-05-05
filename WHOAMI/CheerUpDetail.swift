@@ -49,8 +49,7 @@ struct CheerUpDetail: View {
             }
             
         }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-            .edgesIgnoringSafeArea(.all)
-            .background(Color(red: 80 / 255 , green: 70 / 255, blue: 126 / 255))
+            
         
         
         
