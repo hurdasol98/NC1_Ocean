@@ -27,7 +27,7 @@ struct CheerUpDetail: View {
                             .opacity(textSwitch ? 1 : 0.1)
                             .animation(.easeInOut(duration: 0.2))
                             .onAppear(perform: {
-                                DispatchQueue.main.asyncAfter(deadline: .now()){
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
                                     if self.textSwitch == false{
                                         self.textSwitch.toggle()
                                     }
@@ -43,7 +43,7 @@ struct CheerUpDetail: View {
                     Image(img.imageName)
                         .resizable()
                         .scaledToFit()
-                        .frame(alignment: .center)
+                        .frame(height: 400,alignment: .center)
                         .navigationTitle(img.imageText)
                 }
             }

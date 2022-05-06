@@ -6,17 +6,17 @@
 //
 //첫 번째 탭 뷰로 메인화면, 자신의 상태와 코멘트들을 볼 수 있다.
 import SwiftUI
-
+import UIKit
 //관측가능한 객체 Person클래스 //cvaoments를 제외하곤 변경이 안됨 --> comments를 분리하여 이것만 바인딩하기
 class Person: ObservableObject, Identifiable{
-    @Published var id :String = ""
-    @Published var name: String = "이름"
-    @Published var nickName: String = "닉네임"
-    @Published var age: Int = 25
-    @Published var imageURL : String = "perfect"
-    @Published var feature : String = "특성"
-    @Published var job: String = "직업"
-    @Published var department : String = "애플아카데미"
+    var id :String = ""
+    var name: String = "이름"
+    var nickName: String = "닉네임"
+    var age: Int = 25
+    var imageURL : String = "perfect"
+    var feature : String = "특성"
+    var job: String = "직업"
+    var department : String = "애플아카데미"
     @Published var comments: [String] = []
     //초기화
     init(_ name: String,_ nickName: String,_ age: Int,_ imageURL : String,_ feature : String,_ job: String,_ comments: [String]){
@@ -50,8 +50,10 @@ var people =  [ocean, juny, yung, cho, hoaxer]
 
 struct Me: View {
     @State var showingConfirmation = false
-    
+    //    @State var showingAlert = false
     @StateObject var person: Person
+        @State var itemToDelete = false
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack{
             
@@ -68,6 +70,7 @@ struct Me: View {
                 //Edit 버튼
                 EditButton()
                     .padding(.trailing, 20.0)
+                    .foregroundColor(Color.appMainColor)
             }
             
             List{
@@ -75,25 +78,27 @@ struct Me: View {
                 ForEach(person.comments, id: \.self){comment in
                     Text(comment)
                     
+                        .foregroundColor(.textMainColor)
                         .font(Font.system(size: 20))
+            
                 }
                 .onDelete(perform: delete)
                 .onMove(perform: moveRow)
                 .listStyle(.inset)
                 .confirmationDialog(Text("이 내용을 삭제하겠습니까? 이 내용이 사용자의 모든 기기에서 삭제됩니다."), isPresented: $showingConfirmation,titleVisibility: .visible){
                     Button("Delete",role: .destructive){
-                        
+                        itemToDelete = true
+                        dismiss()
                     }
                     Button("Cancle", role: .cancel){
-                        
-                    
+                        itemToDelete = false
                     }
                 }
-//                .alert(isPresented: $showingAlert){
-//                    Alert(title: Text("삭제각?"), message: Text("되돌리기 없음"), primaryButton: .destructive(Text("취소")){
-//
-//                    },secondaryButton: .cancel(Text("좋아")))
-//                }
+                //                .alert(isPresented: $showingAlert){
+                //                    Alert(title: Text("삭제각?"), message: Text("되돌리기 없음"), primaryButton: .destructive(Text("취소")){
+                //
+                //                    },secondaryButton: .cancel(Text("좋아")))
+                //                }
             }
         }
         .padding(.top)
@@ -102,11 +107,16 @@ struct Me: View {
         
         
     }
-    
     //삭제 기능
+//    func delete(at: IndexSet) {
+//        for index in at {
+//            person.comments.remove(at: index)
+//        }
+//    }
     func delete(at indexes:IndexSet){
+        showingConfirmation = true
         if let first = indexes.first{
-            showingConfirmation = true
+            //            showingAlert = true
             person.comments.remove(at:first)
         }
     }
@@ -120,4 +130,76 @@ struct Me_Previews: PreviewProvider {
     static var previews: some View {
         Me(person: ocean)
     }
+}
+//Color를 확장해서 내가 지정한 컬러를 추가 할 수 있게함
+extension Color{
+    static let appMainColor = Color("appMainColor")
+    
+    static let textMainColor = Color("textMainColor")
+    static let textSubColor = Color("textSubColor")
+}
+
+
+//Tab View의 스타일을 지정하기 위해서 Color와 View를 확장했다.
+extension Color {
+  var uiColor: UIColor? {
+    if #available(iOS 14.0, *) {
+      return UIColor(self)
+    } else {
+      let scanner = Scanner(string: self.description.trimmingCharacters(in: CharacterSet.alphanumerics.inverted))
+      var hexNumber: UInt64 = 0
+      var r: CGFloat = 0.0, g: CGFloat = 0.0, b: CGFloat = 0.0, a: CGFloat = 0.0
+      let result = scanner.scanHexInt64(&hexNumber)
+      if result {
+        r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+        g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+        b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+        a = CGFloat(hexNumber & 0x000000ff) / 255
+        return UIColor(red: r, green: g, blue: b, alpha: a)
+      } else {
+        return nil
+      }
+    }
+  }
+}
+
+extension View {
+  func tabViewStyle(backgroundColor: Color? = nil,
+                    itemColor: Color? = nil,
+                    selectedItemColor: Color? = nil,
+                    badgeColor: Color? = nil) -> some View {
+    onAppear {
+      let itemAppearance = UITabBarItemAppearance()
+      if let uiItemColor = itemColor?.uiColor {
+        itemAppearance.normal.iconColor = uiItemColor
+        itemAppearance.normal.titleTextAttributes = [
+          .foregroundColor: uiItemColor
+        ]
+      }
+      if let uiSelectedItemColor = selectedItemColor?.uiColor {
+        itemAppearance.selected.iconColor = uiSelectedItemColor
+        itemAppearance.selected.titleTextAttributes = [
+          .foregroundColor: uiSelectedItemColor
+        ]
+      }
+      if let uiBadgeColor = badgeColor?.uiColor {
+        itemAppearance.normal.badgeBackgroundColor = uiBadgeColor
+        itemAppearance.selected.badgeBackgroundColor = uiBadgeColor
+      }
+
+      let appearance = UITabBarAppearance()
+      if let uiBackgroundColor = backgroundColor?.uiColor {
+        appearance.backgroundColor = uiBackgroundColor
+      }
+
+      appearance.stackedLayoutAppearance = itemAppearance
+      appearance.inlineLayoutAppearance = itemAppearance
+      appearance.compactInlineLayoutAppearance = itemAppearance
+
+      UITabBar.appearance().standardAppearance = appearance
+      if #available(iOS 15.0, *) {
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+      }
+    }
+  }
 }

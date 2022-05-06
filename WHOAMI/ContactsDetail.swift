@@ -15,7 +15,7 @@ struct ContactsDetail: View {
     var body: some View {
         
         VStack{
-           
+           //프레임 맞추기 위아래도 상관없이
             
             Image("\(person.imageURL)")
                 .resizable()
